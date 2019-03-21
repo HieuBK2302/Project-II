@@ -31,6 +31,7 @@ def ReadFile(file1):
     return cont
 
 cont = ""
+label = ""
 FJoin = os.path.join
 dirs = [FJoin(path, f) for f in os.listdir(path)]
 
@@ -39,8 +40,12 @@ for i in range(0,len(dirs)):
     files = [FJoin(d, f) for f in os.listdir(d)]
     for j in range(0,len(files)): 
         string = ReadFile(files[j])
+        label = label+str(i)+"\n"
         string = string + "\n"
-        cont = cont + str(i)+"\t"+string 
+        cont = cont + string
+l = open("label.txt", "w+")
+l.write(label)
+l.close() 
 f = open("20k_vocab.txt", "w+")
 f.write(cont)
 f.close()
